@@ -1,0 +1,28 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "tsconfig.json",
+    ".eslintrc.json",
+    ".prettierrc.json",
+    "**/tsup.config.ts"
+  ],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist"]
+    },
+    "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "lint": {
+      "inputs": ["src/**", ".eslintrc.json", "tsconfig.json"]
+    },
+    "format": {
+      "inputs": ["src/**", ".eslintrc.json", "tsconfig.json"],
+      "outputs": ["src/**"]
+    }
+  }
+}
