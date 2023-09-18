@@ -24,7 +24,7 @@ export class RestManager {
       ...params,
     });
 
-    const url = `${this.client.options.apiUrl}${parsedQuerystring}`;
+    const url = `${this.client.options.apiUrl}?${parsedQuerystring}`;
 
     const request = await fetch(url, {
       method,
