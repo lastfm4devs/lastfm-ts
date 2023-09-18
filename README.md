@@ -13,8 +13,8 @@ const client = new Client('API_KEY');
 
 const trackData = await client.tracks.get('DROELOE', 'Foolish Fish');
 console.log(
-  `${trackData.name} from ${trackData.artist.name} on album '${trackData.album.name}' has ${trackData.playcount} plays.`,
-);
+  `${trackData.name} from ${trackData.artist.name} has ${trackData.playcount} plays.`
+); // Foolish Fish from DROELOE has 123456 plays.
 ```
 
 ## Getting Started (contributing)
