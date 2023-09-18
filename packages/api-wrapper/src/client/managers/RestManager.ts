@@ -1,4 +1,4 @@
-import objectToQuerystring from '../../utils/objectToQuerystring';
+import querystring from 'node:querystring';
 import type { Client } from '../Client';
 
 export class RestManager {
@@ -17,7 +17,7 @@ export class RestManager {
     endpoint: `${string}.${string}`,
     params: Record<string, number | string> = {},
   ): Promise<T> {
-    const parsedQuerystring = objectToQuerystring({
+    const parsedQuerystring = querystring.stringify({
       method: endpoint,
       api_key: this.client.token,
       format: 'json',
