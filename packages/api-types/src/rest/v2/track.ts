@@ -1,6 +1,7 @@
 import type { Entity } from '../common';
 import type { Album } from './album';
 import type { ArtistBasicInfo } from './artist';
+import type { Image } from './image';
 
 export interface Track extends Entity {
   /**
@@ -71,4 +72,19 @@ export interface TrackStreamableInfo {
    * An attribute value of 1 indicates a full length preview is available for streaming
    */
   fulltrack: string;
+}
+
+export interface PartialTrack extends Omit<Track, 'album' | 'artist' | 'playcount' | 'streamable' | 'toptags' | 'wiki'> {
+  /**
+   * The artist of the track
+   */
+  artist: string;
+  /**
+   * Image URLs for the track
+   */
+  image: Image[];
+  /**
+   * Last.fm for some reason returns 'FIXME'.
+   */
+  streamable: 'FIXME';
 }
