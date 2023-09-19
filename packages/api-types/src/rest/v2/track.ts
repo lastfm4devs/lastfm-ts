@@ -3,6 +3,9 @@ import type { Album } from './album';
 import type { ArtistBasicInfo } from './artist';
 import type { Image } from './image';
 
+/**
+ * Represents a Last.fm track
+ */
 export interface Track extends Entity {
   /**
    * The album the track appears on
@@ -63,6 +66,9 @@ export interface TrackWiki {
   summary: string;
 }
 
+/**
+ * Information about the track's streamability
+ */
 export interface TrackStreamableInfo {
   /**
    * A tag value of 1 indicates a 30 second preview of this song is available for streaming
@@ -74,6 +80,9 @@ export interface TrackStreamableInfo {
   fulltrack: string;
 }
 
+/**
+ * Represents a track with partial information. Generally used when the track is part of a list of tracks or from a search.
+ */
 export interface PartialTrack extends Omit<Track, 'album' | 'artist' | 'playcount' | 'streamable' | 'toptags' | 'wiki'> {
   /**
    * The artist of the track

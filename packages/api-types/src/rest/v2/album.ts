@@ -2,6 +2,9 @@ import type { Entity } from '../common';
 import type { Image } from './image';
 import type { Track } from './track';
 
+/**
+ * Represents a Last.fm album
+ */
 export interface Album extends Entity {
   /**
    * The artist of the album
