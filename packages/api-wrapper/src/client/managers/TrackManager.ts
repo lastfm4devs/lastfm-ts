@@ -1,4 +1,4 @@
-import type { APIGetSimilarTrack, APIGetTrackInfo, APISearchTrack, APITrack } from '@lastfm-ts/api-types';
+import type { APIGetSimilarTrack, APIGetTrackInfo, APISearchTrack } from '@lastfm-ts/api-types';
 import { PartialTrack } from '../../structures';
 import { Track } from '../../structures/Track';
 import type { Client } from '../Client';
@@ -78,7 +78,7 @@ export class TrackManager {
       track,
     })) as APIGetSimilarTrack;
 
-    return res.similartracks.track.map(track => new Track(track as unknown as APITrack));
+    return res.similartracks.track.map(track => new Track(track));
   }
 
   /**
