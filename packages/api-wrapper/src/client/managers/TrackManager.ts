@@ -31,7 +31,8 @@ export class TrackManager {
    * @example
    * ```ts
    * const track = await client.tracks.get('DROELOE', 'Sun bur', { searchIfNotFound: true });
-   * console.log(`${track.name} by ${track.artist.name}`); // Sunburn by DROELOE
+   * if (track instanceof PartialTrack) console.log(`${track.name} by ${track.artist}`); // Sunburn by DROELOE
+   * else console.log(`${track.name} by ${track.artist.name}`); // Sunburn by DROELOE
    * ```
    */
   public async get(
