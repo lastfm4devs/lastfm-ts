@@ -1,8 +1,8 @@
-import type { Album as RawAlbum } from '@lastfm-ts/api-types';
+import type { APIAlbum } from '@lastfm-ts/api-types';
 import { Image } from './Image';
 
 export class Album {
-  public constructor(private readonly raw: RawAlbum) {}
+  public constructor(private readonly raw: APIAlbum) {}
 
   /**
    * The artist of the album

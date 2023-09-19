@@ -1,8 +1,8 @@
-import type { Track as RawTrack } from '@lastfm-ts/api-types';
+import type { APITrack } from '@lastfm-ts/api-types';
 import { Album } from './Album';
 
 export class Track {
-  public constructor(private readonly raw: RawTrack) {}
+  public constructor(private readonly raw: APITrack) {}
 
   /**
    * The artist of the track
