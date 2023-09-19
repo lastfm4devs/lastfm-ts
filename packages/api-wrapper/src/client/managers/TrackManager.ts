@@ -13,6 +13,20 @@ interface TrackGetOptions {
   searchIfNotFound?: boolean;
 }
 
+/**
+ * Options for the track similar request
+ */
+interface TrackSimilarOptions {
+  /**
+   * Whether to autocorrect the query
+   */
+  autocorrect?: boolean;
+  /**
+   * The limit of results to return
+   */
+  limit?: number;
+}
+
 export class TrackManager {
   public constructor(public client: Client) {}
 
@@ -73,10 +87,12 @@ export class TrackManager {
    * console.log(tracks.map(track => `${track.name} by ${track.artist.name}`)); // [ 'DOLLAZ ON MY HEAD by Gunna', 'WUNNA by Gunna', ... ]
    * ```
    */
-  public async getSimilar(artist: string, track: string) {
+  public async getSimilar(artist: string, track: string, options: TrackSimilarOptions = {}) {
     const res = await this.client.rest.request<APIGetSimilarTrack>('GET', 'track.getsimilar', {
       artist,
       track,
+      autocorrect: options.autocorrect ? 1 : 0,
+      limit: options.limit ?? 30,
     });
 
     return res.similartracks.track.map(track => new Track(track));
