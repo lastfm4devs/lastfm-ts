@@ -43,10 +43,11 @@ export class TrackManager {
   public async get(artist: string, track: string, options?: TrackGetOptions): Promise<Track>;
   public async get(artist: string, track: string, options: TrackGetOptions = {}) {
     try {
-      const res = (await this.client.rest.request('GET', 'track.getinfo', {
+      const res = await this.client.rest.request<APIGetTrackInfo>('GET', 'track.getinfo', {
         artist,
         track,
-      })) as APIGetTrackInfo;
+      });
+
       return new Track(res.track);
     } catch (error: any) {
       if (error.message !== 'Track not found') throw error;
@@ -73,10 +74,10 @@ export class TrackManager {
    * ```
    */
   public async getSimilar(artist: string, track: string) {
-    const res = (await this.client.rest.request('GET', 'track.getsimilar', {
+    const res = await this.client.rest.request<APIGetSimilarTrack>('GET', 'track.getsimilar', {
       artist,
       track,
-    })) as APIGetSimilarTrack;
+    });
 
     return res.similartracks.track.map(track => new Track(track));
   }
@@ -98,9 +99,9 @@ export class TrackManager {
    * ```
    */
   public async search(query: string) {
-    const res = (await this.client.rest.request('GET', 'track.search', {
+    const res = await this.client.rest.request<APISearchTrack>('GET', 'track.search', {
       track: query,
-    })) as APISearchTrack;
+    });
 
     return res.results.trackmatches.track.map(track => new PartialTrack(track));
   }
