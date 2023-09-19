@@ -4,7 +4,7 @@
  */
 export type StringBoolean = '0' | '1';
 
-export interface Entity {
+export interface APIEntity {
   /**
    * The unique identifier of the entity on Last.fm
    */

@@ -1,7 +1,7 @@
 /**
  * Represents a Last.fm image
  */
-export interface Image {
+export interface APIImage {
   /**
    * The URL of the image
    */
