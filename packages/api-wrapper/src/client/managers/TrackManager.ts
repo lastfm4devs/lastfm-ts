@@ -8,6 +8,10 @@ import type { Client } from '../Client';
  */
 interface TrackGetOptions {
   /**
+   * Whether to autocorrect the query
+   */
+  autocorrect?: boolean;
+  /**
    * Whether to search for the track if it is not found
    */
   searchIfNotFound?: boolean;
@@ -25,6 +29,20 @@ interface TrackSimilarOptions {
    * The limit of results to return
    */
   limit?: number;
+}
+
+/**
+ * Options for the track search request
+ */
+interface TrackSearchOptions {
+  /**
+   * The limit of results to return
+   */
+  limit?: number;
+  /**
+   * The page of results to return
+   */
+  page?: number;
 }
 
 export class TrackManager {
@@ -60,6 +78,7 @@ export class TrackManager {
       const res = await this.client.rest.request<APIGetTrackInfo>('GET', 'track.getinfo', {
         artist,
         track,
+        autocorrect: options.autocorrect ? 1 : 0,
       });
 
       return new Track(res.track);
@@ -101,7 +120,7 @@ export class TrackManager {
   /**
    * Search for a track
    *
-   * @param query - The query to search for
+   * @param track - The track to search for
    * @returns An array of partial tracks
    * @example
    * ```ts
@@ -114,9 +133,11 @@ export class TrackManager {
    * console.log(tracks[0].name); // Sunburn
    * ```
    */
-  public async search(query: string) {
+  public async search(track: string, options: TrackSearchOptions = {}) {
     const res = await this.client.rest.request<APISearchTrack>('GET', 'track.search', {
-      track: query,
+      track,
+      limit: options.limit ?? 30,
+      page: options.page ?? 1,
     });
 
     return res.results.trackmatches.track.map(track => new PartialTrack(track));
