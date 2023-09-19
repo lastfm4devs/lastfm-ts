@@ -61,6 +61,27 @@ export class TrackManager {
   }
 
   /**
+   * Get similar tracks of a track
+   *
+   * @param artist - The artist name
+   * @param track - The track name
+   * @returns An array of tracks
+   * @example
+   * ```ts
+   * const tracks = await client.tracks.getSimilar('Gunna', 'DOLLAZ ON MY HEAD');
+   * console.log(tracks.map(track => `${track.name} by ${track.artist.name}`)); // [ 'DOLLAZ ON MY HEAD by Gunna', 'WUNNA by Gunna', ... ]
+   * ```
+   */
+  public async getSimilar(artist: string, track: string) {
+    const res = (await this.client.rest.request('GET', 'track.getsimilar', {
+      artist,
+      track,
+    })) as APIGetSimilarTrack;
+
+    return res.similartracks.track.map(track => new Track(track as unknown as APITrack));
+  }
+
+  /**
    * Search for a track
    *
    * @param query - The query to search for
