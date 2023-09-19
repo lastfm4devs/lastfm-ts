@@ -57,6 +57,22 @@ export class TrackManager {
     return new Track(res.track as RawTrack);
   }
 
+  /**
+   * Search for a track
+   *
+   * @param query - The query to search for
+   * @returns An array of partial tracks
+   * @example
+   * ```ts
+   * const tracks = await client.tracks.search('droeloe');
+   * console.log(tracks.map(track => `${track.name} by ${track.artist}`)); // [ 'Sunburn by DROELOE', 'Looking Back by DROELOE', ... ]
+   * ```
+   * @example
+   * ```ts
+   * const tracks = await client.tracks.search('droeloe - sunburn');
+   * console.log(tracks[0].name); // Sunburn
+   * ```
+   */
   public async search(query: string) {
     const res = await this.client.rest.request('GET', 'track.search', {
       track: query,
