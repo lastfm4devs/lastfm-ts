@@ -1,4 +1,4 @@
-import type { APIPartialTrack, APITrack } from '@lastfm-ts/api-types';
+import type { APIGetSimilarTrack, APIGetTrackInfo, APISearchTrack, APITrack } from '@lastfm-ts/api-types';
 import { PartialTrack } from '../../structures';
 import { Track } from '../../structures/Track';
 import type { Client } from '../Client';
@@ -42,19 +42,22 @@ export class TrackManager {
   ): Promise<PartialTrack | Track>;
   public async get(artist: string, track: string, options?: TrackGetOptions): Promise<Track>;
   public async get(artist: string, track: string, options: TrackGetOptions = {}) {
-    const res = await this.client.rest.request('GET', 'track.getinfo', {
-      artist,
-      track,
-    });
+    try {
+      const res = (await this.client.rest.request('GET', 'track.getinfo', {
+        artist,
+        track,
+      })) as APIGetTrackInfo;
+      return new Track(res.track);
+    } catch (error: any) {
+      if (error.message !== 'Track not found') throw error;
 
-    if (res.error === 6 && options.searchIfNotFound) {
+      if (!options.searchIfNotFound) throw new Error('No results found');
+
       const search = await this.search(`${artist} - ${track}`);
       if (search.length === 0) throw new Error('No results found');
 
       return search[0];
     }
-
-    return new Track(res.track as APITrack);
   }
 
   /**
@@ -74,10 +77,10 @@ export class TrackManager {
    * ```
    */
   public async search(query: string) {
-    const res = await this.client.rest.request('GET', 'track.search', {
+    const res = (await this.client.rest.request('GET', 'track.search', {
       track: query,
-    });
+    })) as APISearchTrack;
 
-    return (res.results.trackmatches.track as APIPartialTrack[]).map(track => new PartialTrack(track));
+    return res.results.trackmatches.track.map(track => new PartialTrack(track));
   }
 }
