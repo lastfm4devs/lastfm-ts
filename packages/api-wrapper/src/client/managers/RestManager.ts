@@ -1,4 +1,5 @@
 import querystring from 'node:querystring';
+import type { APIError } from '@lastfm-ts/api-types/src/rest';
 import type { Client } from '../Client';
 
 export class RestManager {
@@ -34,9 +35,9 @@ export class RestManager {
       },
     });
 
-    const response = await request.json();
+    const response = (await request.json()) as APIError | T;
 
-    if (response.error) {
+    if ('error' in response) {
       throw new Error(response.message);
     }
 
