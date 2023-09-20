@@ -1,4 +1,4 @@
-import type { APIArtist, APIImage, ArtistBasicInfo, StringBoolean } from '../../payloads';
+import type { APIArtist, APIArtistBasicInfo, APIImage, APIPartialArtist, StringBoolean } from '../../payloads';
 
 /**
  * Represents a response from the `artist.getinfo` method
@@ -8,11 +8,25 @@ export interface APIGetArtistInfo {
 }
 
 /**
+ * Represents a response from the `artist.search` method
+ */
+export interface APISearchArtist {
+  results: {
+    artistmatches: {
+      artist: APIPartialArtist[];
+    };
+    'opensearch:itemsPerPage': string;
+    'opensearch:startIndex': string;
+    'opensearch:totalResults': string;
+  };
+}
+
+/**
  * Represents a response from the `artist.getsimilar` method
  */
 export interface APIGetSimilarArtist {
   similarartists: {
-    artist: (ArtistBasicInfo & {
+    artist: (APIArtistBasicInfo & {
       /**
        * The image for the artist
        */
