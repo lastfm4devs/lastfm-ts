@@ -1,3 +1,4 @@
+import { ArtistManager } from './managers/ArtistManager';
 import { RestManager } from './managers/RestManager';
 import { TrackManager } from './managers/TrackManager';
 
@@ -13,6 +14,8 @@ export interface ClientOptions {
  */
 export class Client {
   public options: Required<ClientOptions>;
+
+  public artists: ArtistManager;
 
   public tracks: TrackManager;
 
@@ -37,6 +40,7 @@ export class Client {
   }
 
   private setupManagers() {
+    this.artists = new ArtistManager(this);
     this.tracks = new TrackManager(this);
     this.rest = new RestManager(this);
   }
