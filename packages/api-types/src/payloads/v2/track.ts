@@ -1,4 +1,4 @@
-import type { APIEntity } from '../common';
+import type { APIEntity, StringBoolean } from '../common';
 import type { APIAlbum } from './album';
 import type { ArtistBasicInfo } from './artist';
 import type { APIImage } from './image';
@@ -71,13 +71,13 @@ export interface APITrackWiki {
  */
 export interface APITrackStreamableInfo {
   /**
-   * A tag value of 1 indicates a 30 second preview of this song is available for streaming
+   * Whether a 30 second preview of this song is available for streaming
    */
-  '#text': string;
+  '#text': StringBoolean;
   /**
-   * An attribute value of 1 indicates a full length preview is available for streaming
+   * Whether a full length preview is available for streaming
    */
-  fulltrack: string;
+  fulltrack: StringBoolean;
 }
 
 /**
