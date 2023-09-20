@@ -1,6 +1,6 @@
 import type { APIEntity, StringBoolean } from '../common';
 import type { APIAlbum } from './album';
-import type { ArtistBasicInfo } from './artist';
+import type { APIArtistBasicInfo } from './artist';
 import type { APIImage } from './image';
 
 /**
@@ -14,7 +14,7 @@ export interface APITrack extends APIEntity {
   /**
    * The artist of the track
    */
-  artist: ArtistBasicInfo;
+  artist: APIArtistBasicInfo;
   /**
    * The duration of the track, in milliseconds
    */

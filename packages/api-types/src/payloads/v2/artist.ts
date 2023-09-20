@@ -44,7 +44,22 @@ export interface APIArtist extends APIEntity {
   url: string;
 }
 
-export type ArtistBasicInfo = Pick<APIArtist, 'mbid' | 'name' | 'url'>;
+export type APIArtistBasicInfo = Pick<APIArtist, 'mbid' | 'name' | 'url'>;
+
+export type APIPartialArtist = APIArtistBasicInfo & {
+  /**
+   * An array of images associated with the artist
+   */
+  image: APIImage[];
+  /**
+   * The amount of listeners the artist has
+   */
+  listeners: string;
+  /**
+   * Information about the artist's streamability
+   */
+  streamable: StringBoolean;
+};
 
 /**
  * Statistics about an artist
