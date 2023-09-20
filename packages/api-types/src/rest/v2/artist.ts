@@ -10,7 +10,7 @@ export interface APIGetArtistInfo {
 /**
  * Represents a response from the `artist.getsimilar` method
  */
-export interface APIGetSimilarTrack {
+export interface APIGetSimilarArtist {
   similarartists: {
     artist: (ArtistBasicInfo & {
       /**
