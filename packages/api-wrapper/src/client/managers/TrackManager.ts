@@ -10,7 +10,7 @@ interface TrackGetOptions {
   /**
    * Whether to autocorrect the query
    */
-  autocorrect?: boolean;
+  autoCorrect?: boolean;
   /**
    * Whether to search for the track if it is not found
    */
@@ -24,7 +24,7 @@ interface TrackSimilarOptions {
   /**
    * Whether to autocorrect the query
    */
-  autocorrect?: boolean;
+  autoCorrect?: boolean;
   /**
    * The limit of results to return
    */
@@ -78,7 +78,7 @@ export class TrackManager {
       const res = await this.client.rest.request<APIGetTrackInfo>('GET', 'track.getinfo', {
         artist,
         track,
-        autocorrect: options.autocorrect ? 1 : 0,
+        autocorrect: options.autoCorrect ? 1 : 0,
       });
 
       return new Track(res.track);
@@ -110,7 +110,7 @@ export class TrackManager {
     const res = await this.client.rest.request<APIGetSimilarTrack>('GET', 'track.getsimilar', {
       artist,
       track,
-      autocorrect: options.autocorrect ? 1 : 0,
+      autocorrect: options.autoCorrect ? 1 : 0,
       limit: options.limit ?? 30,
     });
 

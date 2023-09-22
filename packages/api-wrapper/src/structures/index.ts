@@ -5,4 +5,3 @@ export * from './PartialAlbum';
 export * from './PartialArtist';
 export * from './PartialTrack';
 export * from './Track';
-
