@@ -47,3 +47,13 @@ export interface APIAlbum extends APIEntity {
    */
   url: string;
 }
+
+/**
+ * Represents a track with partial information. Generally used when the album is returned from a search or from a track's `getInfo` method.
+ */
+export type APIPartialAlbum = Pick<APIAlbum, 'artist' | 'image' | 'url'> & {
+  /**
+   * The name of the album
+   */
+  title: string;
+};
