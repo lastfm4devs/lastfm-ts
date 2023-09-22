@@ -24,7 +24,7 @@
     "types",
     "typings"
   ],
-  "repository": "https://github.com/lastfm-ts/lastfm-ts",
+  "repository": "https://github.com/lastfm4devs/lastfm-ts",
   "author": "Davi Patricio <davipatricio@protonmail.com>",
   "license": "MIT",
   "devDependencies": {
