@@ -5,10 +5,10 @@ export class Album {
   public constructor(private readonly raw: APIAlbum) {}
 
   /**
-   * The artist of the album
+   * The name of the artist of the album
    */
   public get artist() {
-    return {};
+    return this.raw.artist;
   }
 
   /**
