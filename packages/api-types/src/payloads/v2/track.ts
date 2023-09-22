@@ -1,5 +1,5 @@
 import type { APIEntity, StringBoolean } from '../common';
-import type { APIAlbum } from './album';
+import type { APIAlbum, APIPartialAlbum } from './album';
 import type { APIArtistBasicInfo } from './artist';
 import type { APIImage } from './image';
 
@@ -10,7 +10,7 @@ export interface APITrack extends APIEntity {
   /**
    * The album the track appears on
    */
-  album: APIAlbum;
+  album: APIAlbum | APIPartialAlbum;
   /**
    * The artist of the track
    */
