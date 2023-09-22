@@ -1,5 +1,6 @@
 import type { APITrack } from '@lastfm-ts/api-types';
 import { Album } from './Album';
+import { PartialAlbum } from './PartialAlbum';
 
 export class Track {
   public constructor(private readonly raw: Partial<APITrack>) {}
@@ -15,7 +16,10 @@ export class Track {
    * The album of the track
    */
   public get album() {
-    return this.raw.album ? new Album(this.raw.album) : null;
+    if (this.raw.album === undefined) return null;
+    if ('title' in this.raw.album) return new PartialAlbum(this.raw.album);
+
+    return new Album(this.raw.album);
   }
 
   /**
@@ -43,14 +47,20 @@ export class Track {
    * The release date of the track
    */
   public get releaseDate() {
-    return this.album?.releaseDate ?? null;
+    if (!this.raw.album) return null;
+    if (this.album instanceof Album) return this.album.releaseDate;
+
+    return null;
   }
 
   /**
    * The release timestamp of the track
    */
   public get releaseTimestamp() {
-    return this.album?.releaseTimestamp ?? null;
+    if (!this.raw.album) return null;
+    if (this.album instanceof Album) return this.album.releaseTimestamp;
+
+    return null;
   }
 
   /**
