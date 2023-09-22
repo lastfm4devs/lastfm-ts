@@ -26,7 +26,7 @@ export interface APISearchTrack {
  */
 export interface APIGetSimilarTrack {
   similartracks: {
-    track: (Omit<APITrack, 'listeners'> & {
+    track: (Omit<APITrack, 'album' | 'listeners'> & {
       /**
        * The match percentage of the track. This is a number between 0 and 1
        */
