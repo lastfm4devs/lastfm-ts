@@ -10,7 +10,7 @@ interface ArtistGetOptions {
   /**
    * Whether to autocorrect the query
    */
-  autocorrect?: boolean;
+  autoCorrect?: boolean;
   /**
    * Whether to search for the artist if it is not found
    */
@@ -24,7 +24,7 @@ interface ArtistSimilarOptions {
   /**
    * Whether to autocorrect the query
    */
-  autocorrect?: boolean;
+  autoCorrect?: boolean;
   /**
    * The limit of results to return
    */
@@ -64,12 +64,12 @@ export class ArtistManager {
     artist: string,
     options: ArtistGetOptions & { searchIfNotFound: true },
   ): Promise<Artist | PartialArtist>;
-  public async get(artist: string,options?: ArtistGetOptions): Promise<Artist>;
+  public async get(artist: string, options?: ArtistGetOptions): Promise<Artist>;
   public async get(artist: string, options: ArtistGetOptions = {}) {
     try {
       const res = await this.client.rest.request<APIGetArtistInfo>('GET', 'artist.getinfo', {
         artist,
-        autocorrect: options.autocorrect ? 1 : 0,
+        autocorrect: options.autoCorrect ? 1 : 0,
       });
 
       return new Artist(res.artist);
@@ -99,7 +99,7 @@ export class ArtistManager {
   public async getSimilar(artist: string, options: ArtistSimilarOptions = {}) {
     const res = await this.client.rest.request<APIGetSimilarArtist>('GET', 'artist.getsimilar', {
       artist,
-      autocorrect: options.autocorrect ? 1 : 0,
+      autocorrect: options.autoCorrect ? 1 : 0,
       limit: options.limit ?? 30,
     });
 
