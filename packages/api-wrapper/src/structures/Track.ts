@@ -24,6 +24,13 @@ export class Track {
   }
 
   /**
+   * The duration of the track in milliseconds
+   */
+  public get duration() {
+    return Number(this.raw.duration);
+  }
+
+  /**
    * The name of the track
    */
   public get name() {
