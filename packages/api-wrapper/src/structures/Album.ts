@@ -1,5 +1,6 @@
 import type { APIAlbum } from '@lastfm-ts/api-types';
 import { Image } from './Image';
+import { Track } from './Track';
 
 export class Album {
   public constructor(private readonly raw: APIAlbum) {}
@@ -57,7 +58,7 @@ export class Album {
    * An array of tracks on the album
    */
   public get tracks() {
-    return [];
+    return this.raw.tracks.track.map(track => new Track(track));
   }
 
   /**
