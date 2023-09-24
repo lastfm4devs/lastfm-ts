@@ -1,5 +1,6 @@
 import type { APIArtist } from '@lastfm-ts/api-types';
 import { Image } from './Image';
+import { PartialArtist } from './PartialArtist';
 
 export class Artist {
   public constructor(private readonly raw: APIArtist) {}
@@ -9,6 +10,34 @@ export class Artist {
    */
   public get name() {
     return this.raw.name;
+  }
+
+  /**
+   * The biography of the artist
+   */
+  public get bio() {
+    return this.raw.bio.content;
+  }
+
+  /**
+   * Whether the artist is currently on tour
+   */
+  public get onTour() {
+    return this.raw.ontour === '1';
+  }
+
+  /**
+   * Whether the artist is streamable
+   */
+  public get streamable() {
+    return this.raw.streamable === '1';
+  }
+
+  /**
+   * An array of similar artists to the artist
+   */
+  public get similar() {
+    return this.raw.similar.artist.map(artist => new PartialArtist(artist));
   }
 
   /**
