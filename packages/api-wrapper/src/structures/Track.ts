@@ -1,6 +1,7 @@
 import type { APITrack } from '@lastfm-ts/api-types';
 import { Album } from './Album';
 import { PartialAlbum } from './PartialAlbum';
+import { PartialArtist } from './PartialArtist';
 
 export class Track {
   public constructor(private readonly raw: Partial<APITrack>) {}
@@ -9,7 +10,7 @@ export class Track {
    * The artist of the track
    */
   public get artist() {
-    return {};
+    return this.raw.artist ? new PartialArtist(this.raw.artist) : null;
   }
 
   /**
