@@ -17,7 +17,7 @@ export class Track {
    * The album of the track
    */
   public get album() {
-    if (this.raw.album === undefined) return null;
+    if (!this.raw.album) return null;
     if ('title' in this.raw.album) return new PartialAlbum(this.raw.album);
 
     return new Album(this.raw.album);
