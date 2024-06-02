@@ -4,7 +4,9 @@ import { PartialAlbum } from './PartialAlbum';
 import { PartialArtist } from './PartialArtist';
 
 export class Track {
-  public constructor(private readonly raw: Partial<APITrack>) {}
+  public constructor(private readonly raw: Partial<APITrack>) {
+    //
+  }
 
   /**
    * The artist of the track

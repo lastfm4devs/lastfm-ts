@@ -29,11 +29,11 @@ export class Client {
    */
   public constructor(
     public token: string,
-    options: ClientOptions = {},
+    options: ClientOptions = {}
   ) {
     this.options = {
       apiUrl: 'https://ws.audioscrobbler.com/2.0/',
-      ...options,
+      ...options
     };
 
     this.setupManagers();

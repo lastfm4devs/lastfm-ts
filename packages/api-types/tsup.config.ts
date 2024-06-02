@@ -1,6 +1,6 @@
 import { defineConfig } from 'tsup';
 
-export default defineConfig(options => ({
+export default defineConfig((options) => ({
   platform: 'node',
   target: 'node20',
   entry: ['src/index.ts'],
@@ -8,5 +8,5 @@ export default defineConfig(options => ({
   sourcemap: true,
   format: ['cjs', 'esm'],
   minify: !options.watch,
-  clean: true,
+  clean: true
 }));

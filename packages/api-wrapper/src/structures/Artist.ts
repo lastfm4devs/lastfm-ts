@@ -3,14 +3,16 @@ import { Image } from './Image';
 import { PartialArtist } from './PartialArtist';
 
 export class Artist {
-  public constructor(private readonly raw: APIArtist) {}
+  public constructor(private readonly raw: APIArtist) {
+    //
+  }
 
   public get bio() {
     return this.raw.bio.content;
   }
 
   public get images() {
-    return this.raw.image.map(image => new Image(image));
+    return this.raw.image.map((image) => new Image(image));
   }
 
   public get mbid() {
@@ -26,13 +28,13 @@ export class Artist {
   }
 
   public get similar() {
-    return this.raw.similar.artist.map(artist => new PartialArtist(artist));
+    return this.raw.similar.artist.map((artist) => new PartialArtist(artist));
   }
 
   public get stats() {
     return {
       listeners: Number(this.raw.stats.listeners),
-      playCount: Number(this.raw.stats.playcount),
+      playCount: Number(this.raw.stats.playcount)
     };
   }
 

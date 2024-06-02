@@ -3,7 +3,9 @@ import type { APIError } from '@lastfm-ts/api-types/src/rest';
 import type { Client } from '../Client';
 
 export class RestManager {
-  public constructor(public client: Client) {}
+  public constructor(public client: Client) {
+    //
+  }
 
   /**
    * Makes a request to the Last.fm API.
@@ -13,16 +15,17 @@ export class RestManager {
    * @param params - Query parameters for the request.
    * @returns A promise that resolves with the API response.
    */
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   public async request<T extends Record<string, any>>(
     method: 'GET' | 'PATCH' | 'POST',
     endpoint: `${string}.${string}`,
-    params: Record<string, number | string> = {},
+    params: Record<string, number | string> = {}
   ): Promise<T> {
     const parsedQuerystring = querystring.stringify({
       method: endpoint,
       api_key: this.client.token,
       format: 'json',
-      ...params,
+      ...params
     });
 
     const url = `${this.client.options.apiUrl}?${parsedQuerystring}`;
@@ -31,14 +34,14 @@ export class RestManager {
       method,
       headers: {
         'Content-Type': 'application/json',
-        'User-Agent': 'lastfm-ts (https://github.com/lastfm-ts/lastfm-ts, v1.0.0)',
-      },
+        'User-Agent': 'lastfm-ts (https://github.com/lastfm-ts/lastfm-ts, v1.0.0)'
+      }
     });
 
     const response = (await request.json()) as APIError | T;
 
     if ('error' in response) {
-      throw new Error(response.message);
+      throw new Error(response.message as string);
     }
 
     return response;

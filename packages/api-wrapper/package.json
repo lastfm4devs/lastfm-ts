@@ -8,8 +8,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "lint": "prettier --check . && eslint . --ext .ts",
-    "format": "prettier --write . && eslint . --ext .ts --fix"
+    "lint": "biome check .",
+    "format": "biome check --apply ."
   },
   "exports": {
     ".": {
@@ -18,23 +18,17 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "keywords": [
-    "lastfm",
-    "lastfm-api",
-    "api-wrapper"
-  ],
+  "keywords": ["lastfm", "lastfm-api", "api-wrapper"],
   "repository": "https://github.com/lastfm4devs/lastfm-ts",
   "author": "Davi Patricio <davipatricio@protonmail.com>",
   "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^20.6.2",
-    "eslint": "^8.49.0",
-    "eslint-config-neon": "^0.1.56",
-    "prettier": "^3.0.3",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2"
-  },
   "dependencies": {
     "@lastfm-ts/api-types": "workspace:^"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.7.3",
+    "@types/node": "^20.13.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
   }
 }

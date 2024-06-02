@@ -46,8 +46,7 @@ export interface APIArtist extends APIEntity {
   url: string;
 }
 
-export type APIArtistBasicInfo =
-  Pick<APIArtist, 'image' | 'mbid' | 'name' | 'url'> | Pick<APIArtist, 'mbid' | 'name' | 'url'>;
+export type APIArtistBasicInfo = Pick<APIArtist, 'image' | 'mbid' | 'name' | 'url'> | Pick<APIArtist, 'mbid' | 'name' | 'url'>;
 
 export type APIPartialArtist = APIArtistBasicInfo & {
   /**

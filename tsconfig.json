@@ -22,7 +22,5 @@
     "allowSyntheticDefaultImports": true,
     "useUnknownInCatchVariables": false
   },
-  "include": [
-    "*.ts"
-  ]
+  "include": ["*.ts"]
 }

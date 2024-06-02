@@ -3,7 +3,9 @@ import { Image } from './Image';
 import { Track } from './Track';
 
 export class Album {
-  public constructor(private readonly raw: APIAlbum) {}
+  public constructor(private readonly raw: APIAlbum) {
+    //
+  }
 
   /**
    * The name of the artist of the album
@@ -23,7 +25,7 @@ export class Album {
    * An array of images for the album
    */
   public get images() {
-    return this.raw.image.map(image => new Image(image));
+    return this.raw.image.map((image) => new Image(image));
   }
 
   /**
@@ -58,7 +60,7 @@ export class Album {
    * An array of tracks on the album
    */
   public get tracks() {
-    return this.raw.tracks.track.map(track => new Track(track));
+    return this.raw.tracks.track.map((track) => new Track(track));
   }
 
   /**

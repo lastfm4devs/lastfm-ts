@@ -46,7 +46,9 @@ interface ArtistSearchOptions {
 }
 
 export class ArtistManager {
-  public constructor(public client: Client) {}
+  public constructor(public client: Client) {
+    //
+  }
 
   /**
    * Get a artist by its name
@@ -60,21 +62,18 @@ export class ArtistManager {
    * console.log(`${artist.name} has ${artist.stats.listeners} listeners`); // DROELOE has 123456 listeners
    * ```
    */
-  public async get(
-    artist: string,
-    options: ArtistGetOptions & { searchIfNotFound: true },
-  ): Promise<Artist | PartialArtist>;
+  public async get(artist: string, options: ArtistGetOptions & { searchIfNotFound: true }): Promise<Artist | PartialArtist>;
   public async get(artist: string, options?: ArtistGetOptions): Promise<Artist>;
   public async get(artist: string, options: ArtistGetOptions = {}) {
     try {
       const res = await this.client.rest.request<APIGetArtistInfo>('GET', 'artist.getinfo', {
         artist,
-        autocorrect: options.autoCorrect ? 1 : 0,
+        autocorrect: options.autoCorrect ? 1 : 0
       });
 
       return new Artist(res.artist);
-    } catch (error: any) {
-      if (error.message !== 'Artist not found') throw error;
+    } catch (error) {
+      if (error instanceof Error && error.message !== 'Artist not found') throw error;
 
       if (!options.searchIfNotFound) throw new Error('No results found');
 
@@ -100,10 +99,10 @@ export class ArtistManager {
     const res = await this.client.rest.request<APIGetSimilarArtist>('GET', 'artist.getsimilar', {
       artist,
       autocorrect: options.autoCorrect ? 1 : 0,
-      limit: options.limit ?? 30,
+      limit: options.limit ?? 30
     });
 
-    return res.similarartists.artist.map(artist => new PartialArtist(artist));
+    return res.similarartists.artist.map((artist) => new PartialArtist(artist));
   }
 
   /**
@@ -126,9 +125,9 @@ export class ArtistManager {
     const res = await this.client.rest.request<APISearchArtist>('GET', 'artist.search', {
       artist,
       limit: options.limit ?? 30,
-      page: options.page ?? 1,
+      page: options.page ?? 1
     });
 
-    return res.results.artistmatches.artist.map(artist => new PartialArtist(artist));
+    return res.results.artistmatches.artist.map((artist) => new PartialArtist(artist));
   }
 }

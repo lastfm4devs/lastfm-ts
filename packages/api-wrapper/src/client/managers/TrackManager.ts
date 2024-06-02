@@ -46,7 +46,9 @@ interface TrackSearchOptions {
 }
 
 export class TrackManager {
-  public constructor(public client: Client) {}
+  public constructor(public client: Client) {
+    //
+  }
 
   /**
    * Get a track by its name and artist
@@ -67,23 +69,19 @@ export class TrackManager {
    * else console.log(`${track.name} by ${track.artist.name}`); // Sunburn by DROELOE
    * ```
    */
-  public async get(
-    artist: string,
-    track: string,
-    options: TrackGetOptions & { searchIfNotFound: true },
-  ): Promise<PartialTrack | Track>;
+  public async get(artist: string, track: string, options: TrackGetOptions & { searchIfNotFound: true }): Promise<PartialTrack | Track>;
   public async get(artist: string, track: string, options?: TrackGetOptions): Promise<Track>;
   public async get(artist: string, track: string, options: TrackGetOptions = {}) {
     try {
       const res = await this.client.rest.request<APIGetTrackInfo>('GET', 'track.getinfo', {
         artist,
         track,
-        autocorrect: options.autoCorrect ? 1 : 0,
+        autocorrect: options.autoCorrect ? 1 : 0
       });
 
       return new Track(res.track);
-    } catch (error: any) {
-      if (error.message !== 'Track not found') throw error;
+    } catch (error) {
+      if (error instanceof Error && error.message !== 'Track not found') throw error;
 
       if (!options.searchIfNotFound) throw new Error('No results found');
 
@@ -111,10 +109,10 @@ export class TrackManager {
       artist,
       track,
       autocorrect: options.autoCorrect ? 1 : 0,
-      limit: options.limit ?? 30,
+      limit: options.limit ?? 30
     });
 
-    return res.similartracks.track.map(track => new Track(track));
+    return res.similartracks.track.map((track) => new Track(track));
   }
 
   /**
@@ -137,9 +135,9 @@ export class TrackManager {
     const res = await this.client.rest.request<APISearchTrack>('GET', 'track.search', {
       track,
       limit: options.limit ?? 30,
-      page: options.page ?? 1,
+      page: options.page ?? 1
     });
 
-    return res.results.trackmatches.track.map(track => new PartialTrack(track));
+    return res.results.trackmatches.track.map((track) => new PartialTrack(track));
   }
 }

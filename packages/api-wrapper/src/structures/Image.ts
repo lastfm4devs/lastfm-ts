@@ -1,7 +1,9 @@
 import type { APIImage } from '@lastfm-ts/api-types';
 
 export class Image {
-  public constructor(private readonly raw: APIImage) {}
+  public constructor(private readonly raw: APIImage) {
+    //
+  }
 
   /**
    * The URL of the image

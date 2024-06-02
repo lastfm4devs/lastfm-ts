@@ -2,7 +2,9 @@ import type { APIPartialAlbum } from '@lastfm-ts/api-types';
 import { Image } from './Image';
 
 export class PartialAlbum {
-  public constructor(private readonly raw: APIPartialAlbum) {}
+  public constructor(private readonly raw: APIPartialAlbum) {
+    //
+  }
 
   /**
    * The name of the artist
@@ -22,7 +24,7 @@ export class PartialAlbum {
    * An array of images for the album
    */
   public get images() {
-    return this.raw.image.map(image => new Image(image));
+    return this.raw.image.map((image) => new Image(image));
   }
 
   /**

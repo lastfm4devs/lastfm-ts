@@ -1,7 +1,9 @@
 import type { APIPartialTrack } from '@lastfm-ts/api-types';
 
 export class PartialTrack {
-  public constructor(private readonly raw: Partial<APIPartialTrack>) {}
+  public constructor(private readonly raw: Partial<APIPartialTrack>) {
+    //
+  }
 
   /**
    * The name of the artist
