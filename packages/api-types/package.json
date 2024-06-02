@@ -1,7 +1,7 @@
 {
   "name": "@lastfm-ts/api-types",
   "version": "0.0.1",
-  "description": "",
+  "description": "Last.fm API Typings",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
@@ -17,6 +17,7 @@
       "types": "./dist/index.d.ts"
     }
   },
+  "files": ["dist", "README.md", "package.json"],
   "keywords": ["lastfm", "lastfm-api", "api-types", "types", "typings"],
   "repository": "https://github.com/lastfm4devs/lastfm-ts",
   "author": "Davi Patricio <davipatricio@protonmail.com>",
