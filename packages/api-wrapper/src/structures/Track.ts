@@ -18,7 +18,7 @@ export class Track {
   /**
    * The album of the track
    */
-  public get album() {
+  public get album(): Album | PartialAlbum | null {
     if (!this.raw.album) return null;
     if (!('tracks' in this.raw.album)) return new PartialAlbum(this.raw.album);
 

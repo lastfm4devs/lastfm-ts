@@ -1,6 +1,6 @@
 import type { APIEntity } from '../common';
 import type { APIImage } from './image';
-import type { APITrack } from './track';
+import type { APIPartialTrack, APITrack } from './track';
 
 /**
  * Represents a Last.fm album
@@ -40,7 +40,7 @@ export interface APIAlbum extends APIEntity {
    * An array of tracks on the album
    */
   tracks: {
-    track: APITrack[];
+    track: (APITrack | APIPartialTrack)[];
   };
   /**
    * The URL to the album's Last.fm page

@@ -1,4 +1,4 @@
-import type { APIPartialTrack, APITrack } from '../../payloads';
+import type { APIPartialSearchTrack, APITrack } from '../../payloads';
 
 /**
  * Represents a response from the `track.getinfo` method
@@ -16,7 +16,7 @@ export interface APISearchTrack {
     'opensearch:startIndex': string;
     'opensearch:totalResults': string;
     trackmatches: {
-      track: APIPartialTrack[];
+      track: APIPartialSearchTrack[];
     };
   };
 }

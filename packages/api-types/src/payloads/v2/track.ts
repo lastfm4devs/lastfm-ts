@@ -81,7 +81,7 @@ export interface APITrackStreamableInfo {
 }
 
 /**
- * Represents a track with partial information. Generally used when the track is part of a list of tracks or from a search.
+ * Represents a track with partial information
  */
 export interface APIPartialTrack extends Omit<APITrack, 'album' | 'artist' | 'playcount' | 'streamable' | 'toptags' | 'wiki'> {
   /**
@@ -89,11 +89,17 @@ export interface APIPartialTrack extends Omit<APITrack, 'album' | 'artist' | 'pl
    */
   artist: string;
   /**
-   * Image URLs for the track
-   */
-  image: APIImage[];
-  /**
    * Last.fm for some reason returns 'FIXME'.
    */
   streamable: 'FIXME';
+}
+
+/**
+ * Represents a track with partial information. Used when the track is part of a list of tracks or from a search.
+ */
+export interface APIPartialSearchTrack extends APIPartialTrack {
+  /**
+   * Image URLs for the track
+   */
+  image: APIImage[];
 }

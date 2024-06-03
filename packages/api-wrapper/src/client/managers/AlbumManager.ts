@@ -1,6 +1,20 @@
-import type { APISearchAlbum } from '@lastfm-ts/api-types';
-import { PartialAlbum } from '../../structures';
+import type { APIGetAlbumInfo, APISearchAlbum } from '@lastfm-ts/api-types';
+import { Album, PartialAlbum } from '../../structures';
 import type { Client } from '../Client';
+
+/**
+ * Options for the album get request
+ */
+interface AlbumGetOptions {
+  /**
+   * Whether to autocorrect the query
+   */
+  autoCorrect?: boolean;
+  /**
+   * Whether to search for the album if it is not found
+   */
+  searchIfNotFound?: boolean;
+}
 
 /**
  * Options for the album search request
@@ -19,6 +33,42 @@ interface AlbumSearchOptions {
 export class AlbumManager {
   public constructor(public client: Client) {
     //
+  }
+
+  /**
+   * Gets an album by its artist and name
+   *
+   * @param artist - The artist name
+   * @param album - The album name
+   * @param options - Additional options for the request
+   * @returns The album object, or a partial album if the album is not found but the searchIfNotFound option is true
+   * @example
+   * ```ts
+   * const artist = await client.albums.get('DROELOE', 'A Moment In Time');
+   * console.log(`${artist.name} has ${artist.stats.listeners} listeners`); // DROELOE has 123456 listeners
+   * ```
+   */
+  public async get(artist: string, album: string, options: AlbumGetOptions & { searchIfNotFound: true }): Promise<Album | PartialAlbum>;
+  public async get(artist: string, album: string, options?: AlbumGetOptions): Promise<Album>;
+  public async get(artist: string, album: string, options: AlbumGetOptions = {}) {
+    try {
+      const res = await this.client.rest.request<APIGetAlbumInfo>('GET', 'album.getinfo', {
+        artist,
+        album,
+        autocorrect: options.autoCorrect ? 1 : 0
+      });
+
+      return new Album(res.album);
+    } catch (error) {
+      if (error instanceof Error && error.message !== 'Album not found') throw error;
+
+      if (!options.searchIfNotFound) throw new Error('No results found');
+
+      const search = await this.search(`${artist} ${album}`);
+      if (search.length === 0) throw new Error('No results found');
+
+      return search[0];
+    }
   }
 
   /**
