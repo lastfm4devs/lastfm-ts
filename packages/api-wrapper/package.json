@@ -1,6 +1,6 @@
 {
   "name": "@lastfm-ts/wrapper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Easy-to-use Last.fm API Wrapper",
   "main": "dist/index.js",
   "type": "module",
