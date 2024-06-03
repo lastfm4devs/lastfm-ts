@@ -20,7 +20,7 @@ export class Track {
    */
   public get album() {
     if (!this.raw.album) return null;
-    if ('title' in this.raw.album) return new PartialAlbum(this.raw.album);
+    if (!('tracks' in this.raw.album)) return new PartialAlbum(this.raw.album);
 
     return new Album(this.raw.album);
   }

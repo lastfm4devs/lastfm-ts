@@ -17,7 +17,7 @@ export class PartialAlbum {
    * The name of the album
    */
   public get name() {
-    return this.raw.title;
+    return this.raw.title ?? this.raw.name ?? '';
   }
 
   /**

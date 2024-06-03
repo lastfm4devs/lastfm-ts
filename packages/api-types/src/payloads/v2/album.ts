@@ -55,5 +55,9 @@ export type APIPartialAlbum = Pick<APIAlbum, 'artist' | 'image' | 'url'> & {
   /**
    * The name of the album
    */
-  title: string;
+  title?: string;
+  /**
+   * The name of the album
+   */
+  name?: string;
 };
