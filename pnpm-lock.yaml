@@ -26,6 +26,9 @@ importers:
 
   packages/api-types:
     devDependencies:
+      '@biomejs/biome':
+        specifier: ^1.7.3
+        version: 1.7.3
       '@types/node':
         specifier: ^20.13.0
         version: 20.13.0
@@ -42,6 +45,9 @@ importers:
         specifier: workspace:^
         version: link:../api-types
     devDependencies:
+      '@biomejs/biome':
+        specifier: ^1.7.3
+        version: 1.7.3
       '@types/node':
         specifier: ^20.13.0
         version: 20.13.0
