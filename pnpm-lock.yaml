@@ -26,6 +26,9 @@ importers:
 
   packages/api-types:
     devDependencies:
+      '@biomejs/biome':
+        specifier: ^1.7.3
+        version: 1.7.3
       '@types/node':
         specifier: ^20.13.0
         version: 20.13.0
@@ -42,6 +45,9 @@ importers:
         specifier: workspace:^
         version: link:../api-types
     devDependencies:
+      '@biomejs/biome':
+        specifier: ^1.7.3
+        version: 1.7.3
       '@types/node':
         specifier: ^20.13.0
         version: 20.13.0
@@ -509,6 +515,7 @@ packages:
   glob@10.4.1:
     resolution: {integrity: sha512-2jelhlq3E4ho74ZyVLN03oKdAZVUa6UDZzFLVH1H7dnoax+y9qyaq8zBkfDIggjniU19z0wU18y16jMB2eyVIw==}
     engines: {node: '>=16 || 14 >=14.18'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   globby@11.1.0:
@@ -718,6 +725,7 @@ packages:
   source-map@0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
     engines: {node: '>= 8'}
+    deprecated: The work that was done in this beta branch won't be included in future versions
 
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
