@@ -23,7 +23,7 @@
   "author": "Davi Patricio <davipatricio@protonmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@biomejs/biome": "^1.7.3",
+    "@biomejs/biome": "^2.0.0",
     "@types/node": "^20.13.0",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5"
